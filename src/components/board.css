@@ -1,0 +1,6 @@
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(3 * 6.25rem + 2 * 0.5rem);
+    gap: 0.5rem;
+}

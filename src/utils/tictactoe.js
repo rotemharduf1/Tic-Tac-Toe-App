@@ -11,3 +11,9 @@ export function calcWinner(sqrs) {
     }
     return null
 }
+
+export function gameStatus(sqrs) {
+    const winner = calcWinner(sqrs)
+    const isDraw = !winner && sqrs.every(x => x !== null)
+    return { winner, isDraw }
+}

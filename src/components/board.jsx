@@ -1,6 +1,7 @@
 import Square from "./square";
+import "./board.css"
 
-export default  function Board({ sqrs = Array(9).fill(null), onPlay = () => {}}) {
+export default  function Board({ sqrs, onPlay }) {
     return (
         <div className="board">
             {sqrs.map((val, idx) => (

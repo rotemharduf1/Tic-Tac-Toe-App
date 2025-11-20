@@ -1,41 +1,35 @@
+import { useState } from 'react'
+import { gameStatus } from '../utils/tictactoe.js'
 import Board from './board.jsx'
-import { useState, useMemo } from 'react'
-import StatusBar from './statusBar.jsx'
 import Controls from './controls.jsx'
-import { calcWinner } from '../utils/winner.js'
-
+import StatusBar from './statusBar.jsx'
+import "./game.css"
 
 export default function Game() {
     const [sqrs, setSqrs] = useState(Array(9).fill(null))
-    const [isNext, setIsNext] = useState(true)
+    const [isXNext, setIsXNext] = useState(true)
 
-    const winner = useMemo(() => calcWinner(sqrs), [sqrs])
-    const isDraw = !winner && sqrs.every(Boolean)
-    
+    const { winner, isDraw } = gameStatus(sqrs)
     
     function handlePlay(idx) {
         if(sqrs[idx] || winner) return //this cell is filled/end of game
 
         const next = sqrs.slice() //copy of the state
-        next[idx] = isNext ? 'X' : 'O'
+        next[idx] = isXNext ? 'X' : 'O'
         setSqrs(next)
-        setIsNext(!isNext)
+        setIsXNext(!isXNext)
     }
 
     function handleReset() {
         setSqrs(Array(9).fill(null))
-        setIsNext(true)
+        setIsXNext(true)
     }
-
-    let statusTxt = `Turn: ${isNext ? 'X' : 'O'}`
-    if(winner) statusTxt = `Winner: ${winner}`
-    else if(isDraw) statusTxt = `It's a Draw!`
 
     return (
         <div className="game">
-        {<StatusBar txt={statusTxt} />}
-        {<Board sqrs={sqrs} onPlay={handlePlay} />}
-        {<Controls onReset={handleReset} />}
+        <StatusBar isXNext={isXNext} winner={winner} isDraw={isDraw} />
+        <Board sqrs={sqrs} onPlay={handlePlay} />
+        <Controls onReset={handleReset} />
         </div>
     )
-    }
+}
