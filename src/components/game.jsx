@@ -5,47 +5,31 @@ import Controls from './controls.jsx'
 import StatusBar from './statusBar.jsx'
 import "./game.css"
 
+const STORAGE_KEY = 'tictactoe-gameState';
+
 export default function Game() {
-    const [sqrs, setSqrs] = useState(() => {
-        const saved = localStorage.getItem('tictactoe-gameState');
-        if(!saved) return Array(9).fill(null);
+    const [sqrs, setSqrs] = useState(Array(9).fill(null));
+    const [history, setHistory] = useState([]);
+    const [isXNext, setIsXNext] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
-        try{
-            const parsed = JSON.parse(saved);
-            return Array.isArray(parsed.sqrs) ? parsed.sqrs : Array(9).fill(null);
-        } catch{
-            return Array(9).fill(null);
-        }
-    });
-    const [history, setHistory] = useState(() => {
-        const saved = localStorage.getItem('tictactoe-gameState');
-        if(!saved) return [];
-
-        try{
-            const parsed = JSON.parse(saved);
-            return Array.isArray(parsed.history) ? parsed.history : [];
-        } catch{
-            return [];
-        }
-    });
-    const [isXNext, setIsXNext] = useState(() => {
-        const saved = localStorage.getItem('tictactoe-gameState');
-        if(!saved) return true;
-        
-        try{
-            const parsed = JSON.parse(saved);
-            return typeof parsed.isXNext === 'boolean' ? parsed.isXNext : true;
-        } catch{
-            return true;
-        }
-    });
-
-    // refresh
-    //from object to JSON
     useEffect(() => {
-        const gameState = {sqrs, isXNext, history};
-        localStorage.setItem('tictactoe-gameState', JSON.stringify(gameState));
-    }, [sqrs, isXNext, history]);
+        const gameStateFromLocalStorage = localStorage.getItem(STORAGE_KEY);
+        if (gameStateFromLocalStorage) {
+            const parsedState = JSON.parse(gameStateFromLocalStorage);
+            setSqrs(parsedState.sqrs);
+            setIsXNext(parsedState.isXNext);
+            setHistory(parsedState.history);
+            setIsLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        if(isLoading) return;
+
+        const gameState = { sqrs, isXNext, history };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
+        }, [sqrs, isXNext, history, isLoading]);
 
     const { winner, isDraw } = gameStatus(sqrs)
     
@@ -65,6 +49,10 @@ export default function Game() {
         setSqrs(Array(9).fill(null))
         setIsXNext(true)
         setHistory([])
+    }
+
+    if(isLoading) {
+        return <div>Loading...</div>;
     }
 
     return (
