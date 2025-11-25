@@ -1,0 +1,32 @@
+.sidebar {
+    width: 14rem;
+    min-height: 100vh;
+    background-color: rgba(80, 80, 80, 0.25);
+    backdrop-filter: blur(6px);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar__link {
+    font-size: 1.1rem;
+    color: #e5e5e5;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    transition: 0.2s ease-in-out;
+}
+
+.sidebar__link:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.sidebar__link--active {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+}
