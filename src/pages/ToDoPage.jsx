@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ToDoPage.css";
 
 export default function ToDoPage() {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(() => {
+        const savedTasks = localStorage.getItem("tasks");
+        return savedTasks ? JSON.parse(savedTasks) : [];
+    });
     const [newTask, setNewTask] = useState("");
+    const hasCompletedTasks = tasks.some((task) => task.completed);
+
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
     const addTask = () => {
         if (newTask.trim() === "") return;
@@ -23,6 +32,11 @@ export default function ToDoPage() {
             task.id === id ? { ...task, completed: !task.completed } : task
         );
         setTasks(updatedTasks);
+    };
+
+    const clearCompletedTasks = () => {
+        const activeTasks = tasks.filter((task) => !task.completed);
+        setTasks(activeTasks);
     };
 
     return (
@@ -62,6 +76,15 @@ export default function ToDoPage() {
                 </li>
             ))}
         </ul>
+
+        {hasCompletedTasks && (
+            <button
+                className="todo__button"
+                onClick={clearCompletedTasks}
+            >
+                Clear completed tasks
+            </button>
+        )}
         </section>
     );
 }

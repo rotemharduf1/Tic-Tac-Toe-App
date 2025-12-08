@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layout/Layout";
 import TicTacToePage from "./pages/TicTacToePage";
 import ToDoPage from "./pages/ToDoPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/todos" element={<ToDoPage />} />
         </Route>
 
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
