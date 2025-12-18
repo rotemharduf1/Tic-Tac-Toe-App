@@ -18,6 +18,10 @@ A small React project that includes:
 - Responsive layout
 
 ## 🔗 Live Demo
+
+https://github.com/user-attachments/assets/661b6c17-6a8c-49ab-bb29-2602c5bc0c06
+
+
 https://YOUR-SITE.netlify.app
 
 ## 📦 Installation
