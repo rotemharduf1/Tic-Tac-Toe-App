@@ -1,0 +1,65 @@
+.todo-page {
+    width: 100%;
+}
+
+.todo-new-task {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.todo-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.todo-clear-button {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    width: 100%;
+}
+
+.todo-item {
+    width: 100%;
+}
+
+.todo-item-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.todo-checkbox {
+    flex: 0 0 auto;
+}
+
+.todo-text {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.todo-item-completed .todo-text {
+    text-decoration: line-through;
+    opacity: 0.7;
+}

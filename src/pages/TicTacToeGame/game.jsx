@@ -1,5 +1,5 @@
 import { useState , useEffect } from 'react'
-import { gameStatus } from '../utils/tictactoe.js'
+import { gameStatus } from '../../utils/tictactoe.js'
 import Board from './board.jsx'
 import Controls from './controls.jsx'
 import StatusBar from './statusBar.jsx'

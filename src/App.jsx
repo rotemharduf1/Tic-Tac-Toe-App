@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layout/Layout";
-import TicTacToePage from "./pages/TicTacToePage";
-import ToDoPage from "./pages/ToDoPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import TicTacToePage from "./pages/TicTacToeGame/TicTacToePage";
+import ToDoPage from "./pages/ToDoPage/ToDoPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
