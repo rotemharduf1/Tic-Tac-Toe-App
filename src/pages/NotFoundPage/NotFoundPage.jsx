@@ -1,4 +1,4 @@
-import PageTitle from "../../components/pageTitle/pageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 export default function NotFoundPage() {
     return (
