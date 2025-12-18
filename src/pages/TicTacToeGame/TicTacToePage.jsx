@@ -1,5 +1,5 @@
 import Game from "./game.jsx";
-import PageTitle from "../../components/pageTitle/PageTitle.jsx";
+import PageTitle from "../../components/PageTitle/PageTitle.jsx";
 
 export default function TicTacToePage() {
     return (
