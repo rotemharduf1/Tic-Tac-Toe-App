@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./ToDoPage.css";
 
-import PageTitle from  "../../components/pageTitle/pageTitle";
+import PageTitle from "../../components/PageTitle/PageTitle";
 import TodoInput from "../../components/ToDoUI/TodoInput";
 import TodoList from "../../components/ToDoUI/TodoList";
 
