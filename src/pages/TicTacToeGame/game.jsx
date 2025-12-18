@@ -14,12 +14,18 @@ export default function Game() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const gameStateFromLocalStorage = localStorage.getItem(STORAGE_KEY);
-        if (gameStateFromLocalStorage) {
-            const parsedState = JSON.parse(gameStateFromLocalStorage);
-            setSqrs(parsedState.sqrs);
-            setIsXNext(parsedState.isXNext);
-            setHistory(parsedState.history);
+        try {
+            const gameStateFromLocalStorage = localStorage.getItem(STORAGE_KEY);
+
+            if (gameStateFromLocalStorage) {
+                const parsedState = JSON.parse(gameStateFromLocalStorage);
+                setSqrs(parsedState.sqrs);
+                setIsXNext(parsedState.isXNext);
+                setHistory(parsedState.history);
+            }
+        } catch (error) {
+            console.error("Failed to load game state:", error);
+        } finally {
             setIsLoading(false);
         }
     }, []);
