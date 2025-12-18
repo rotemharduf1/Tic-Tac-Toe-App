@@ -1,4 +1,4 @@
-#Tic-Tac-Toe & To Do App
+## 🎮 Tic-Tac-Toe & To Do App
 
 A small React project that includes:
 - Tic-Tac-Toe game with game history
